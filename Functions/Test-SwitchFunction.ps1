@@ -1,3 +1,6 @@
+#region ToDo
+# This needs to be fixed up a bit
+#Endregion ToDo
 Function Test-SwitchFunction
 {
 <#
@@ -26,13 +29,8 @@ Function Test-SwitchFunction
 		https://github.com/Panzerbjrn/ADtoolsModule
 #>
 	Param (
-		[Parameter()][string]$Path="D:\Downloads\Torrents\__Downloaded1",
-		[Parameter()][switch]$Recurse,
-		[Parameter()][switch]$Document,
 		[Parameter()][ValidateSet("Size","Name","DateCreated")][string]$SortOrder,
-		[Parameter()][switch]$Descending,
-		[Parameter()][string]$Item="*",
-		[Parameter()][ValidateSet("C:\Dropbox\Scripts\ArchFiles_DEL_.csv","D:\Dropbox\Scripts\ArchFilesInS3.csv")][string]$CSV="C:\Dropbox\Scripts\ArchFiles_DEL_.csv"
+		[Parameter()][switch]$Descending
 	)
 
 	Switch ($SortOrder)
