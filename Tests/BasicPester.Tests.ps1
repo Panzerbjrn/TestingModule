@@ -1,3 +1,5 @@
+$VarA = "Test"
+$VerB = "Test"
 Describe 'Basic Pester Tests' {
 	It 'A test that should be true' {
 		$True | Should Be $True
@@ -6,6 +8,31 @@ Describe 'Basic Pester Tests' {
 		$Fail | Should Be $null
 	}
 }
+
+Describe 'Another Basic Pester Tests' {
+	It 'A test that should be true' {
+		$VarA | Should Be $VarB
+	}
+	It 'A test that should fail' {
+		$VarA | Should Be "Test"
+	}
+}
+
+Describe "test" {
+    It "true is never false" {
+        $true | Should -not -Be $false
+    }
+}
+
+Describe "test" {
+
+    new-item (Join-Path $TestDrive 'File.txt') 
+
+    It "Test if File.txt exist" {
+       (test-path -path (Join-Path $TestDrive 'File.txt')  ) | Should -Be $true
+    }
+}
+
 
 Describe 'should exist test' {
 	It 'Should exist' {
