@@ -19,18 +19,18 @@ Describe 'Another Basic Pester Tests' {
 }
 
 Describe "test" {
-	It "true is never false" {
-		$true | Should -not -Be $false
-	}
+    It "true is never false" {
+        $true | Should -not -Be $false
+    }
 }
 
 Describe "test" {
 
-	new-item (Join-Path $TestDrive 'File.txt') 
+    new-item (Join-Path $TestDrive 'File.txt') 
 
-	It "Test if File.txt exist" {
-		(test-path -path (Join-Path $TestDrive 'File.txt')	) | Should -Be $true
-	}
+    It "Test if File.txt exist" {
+       (test-path -path (Join-Path $TestDrive 'File.txt')  ) | Should -Be $true
+    }
 }
 
 

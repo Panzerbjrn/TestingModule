@@ -3,6 +3,7 @@ Function Test-ShouldProcess {
 	param()
 
 	Begin {
+		Write-Verbose "Beginning $($MyInvocation.Mycommand)"
 		if (-not $PSBoundParameters.ContainsKey('Confirm'))
 		{
 			$ConfirmPreference = $PSCmdlet.SessionState.PSVariable.GetValue('ConfirmPreference')
