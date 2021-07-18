@@ -1,1 +1,0 @@
-![Build status](https://ci.appveyor.com/api/projects/status/jsxyywga4sed/branch/master?svg=true)
