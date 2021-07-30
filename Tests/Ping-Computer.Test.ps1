@@ -12,10 +12,10 @@ Describe 'Mock Ping-Computer' {
 
 describe 'Test Ping-Computer' {
 	it 'should  return $true when the computer is online' {
-	Ping-Computer -ComputerName 127.0.0.1 | should be $true
+	Ping-Computer -ComputerName 127.0.0.1 | Should -Be $true
 	}
 
 	it 'should  return $false when the computer is offline' {
-		Ping-Computer -ComputerName 'DOESNOTMATTER' | should be $false
+		Ping-Computer -ComputerName 'DOESNOTMATTER' | Should -Be $false
 	}
 }

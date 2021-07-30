@@ -1,18 +1,16 @@
-Describe -tag "Testdrive Variable test" -Name "TestDrive Variable Test" {
-
-	New-Item (Join-Path $TestDrive 'File1.txt')
-
-	IT "Test if TestDrive Variable Works" {
-		(test-path -path (Join-Path $TestDrive 'File1.txt')	) | Should -Be $true
+Describe -tag "Testdrive" -Name "TestDrive File Tests" {
+	BeforeAll {
+		$TestDrive = "TestDrive:\"
+		Set-Content $(Join-Path $TestDrive 'File.txt') -Value "My Test File"
 	}
-}
 
-Describe -tag "Testdrive UNC test" -Name "TestDrive UNC Test" {
-
-	New-Item "TestDrive:\File2.txt"
-
+	It "Test if Test-Path to File.txt is true" {
+		(Test-Path -Path $(Join-Path $TestDrive 'File.txt')) | Should -Be $true
+	}
+	It "Test if File.txt exist" {
+		Join-Path $TestDrive 'File.txt' | Should -Exist
+	}
 	IT "Test if TestDrive UNC Path Works" {
-		(test-path -path "TestDrive:\File2.txt") | Should -Be $true
+		(Test-Path -Path "TestDrive:\File.txt") | Should -Be $true
 	}
 }
-
