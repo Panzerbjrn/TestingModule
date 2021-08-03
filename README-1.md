@@ -1,15 +1,8 @@
-TOPIC
-	about_TestingModule
-
-SHORT DESCRIPTION
+# Topic TestingModule
+## Short Description
 	This module is for providing code to easily see PowerShell functionality.
 
-LONG DESCRIPTION
+## Long Description
 	This module is for providing code to easily see PowerShell functionality, and to get a hands-on feel for how to use various functionality.
 	See also the included tests for basic Pester testing functionality.
 
-KEYWORDS
-	'Testing','Functionality','Learning','Pester','Panzerbjrn'
-
-SEE ALSO
-	https://github.com/Panzerbjrn/TestingModule

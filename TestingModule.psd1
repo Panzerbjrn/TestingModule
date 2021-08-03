@@ -48,7 +48,7 @@
 		PSData = @{
 			# Tags applied to this module. These help with module discovery in online galleries.
 			Tags = @('Testing','Functionality','Learning','Pester','Panzerbjrn')
-			# ProjectUri = 'https://github.com/Panzerbjrn/TestingModule'
+			ProjectUri = 'https://github.com/Panzerbjrn/TestingModule'
 		} # End of PSData hashtable
 	} # End of PrivateData hashtable
 }

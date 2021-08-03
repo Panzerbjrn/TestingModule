@@ -11,10 +11,10 @@ Function Test-ParamSets
 		[Parameter(ParameterSetName='ID')]
 		[String]$ID,
 
-		[Parameter(,ParameterSetName="ID")]
+		[Parameter(ParameterSetName="ID")]
 		[switch]$Hexidecimal,
 
-		[Parameter(,ParameterSetName="Name")]
+		[Parameter(ParameterSetName="Name")]
 		[switch]$Decimal
 	)
 	'Set name is: {0}' -f $PSCmdlet.ParameterSetName
