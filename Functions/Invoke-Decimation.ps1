@@ -28,7 +28,7 @@ Function Invoke-Decimation {
 		https://github.com/Panzerbjrn/TestingModule
 #>
 
-	[CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'High')] # Step 1
+	[CmdletBinding(SupportsShouldProcess=$true,ConfirmImpact='High')]
 	param(
 		[Parameter(Position = 0)]
 		[ValidateNotNullOrEmpty()]

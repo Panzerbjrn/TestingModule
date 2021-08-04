@@ -1,4 +1,32 @@
 Function Test-WhatIf {
+<#
+	.SYNOPSIS
+		This will test what if by creating a new file.
+
+	.DESCRIPTION
+		This will test what if by creating a new file.
+
+	.PARAMETER FilePath
+		This is the path of the file that will be created
+
+	.INPUTS
+		Command line
+
+	.OUTPUTS
+		Creates a file
+
+	.NOTES
+		Just a basic test of how WhatIf works
+
+	.EXAMPLE
+		Test-WhatIf -FilePath C:\Temp\TestWhatIf.txt
+
+	.EXAMPLE
+		Test-WhatIf -FilePath C:\Temp\TestWhatIf.txt -WhatIf
+
+	.LINK
+		https://github.com/Panzerbjrn/TestingModule
+#>
 	[CmdletBinding(SupportsShouldProcess=$true,ConfirmImpact='High')]
 	param(
 		[Parameter(Mandatory)]
