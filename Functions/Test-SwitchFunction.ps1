@@ -1,6 +1,3 @@
-#region ToDo
-# This needs to be fixed up a bit
-#Endregion ToDo
 Function Test-SwitchFunction
 {
 <#

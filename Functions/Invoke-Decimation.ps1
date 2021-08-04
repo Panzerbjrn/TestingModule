@@ -27,7 +27,6 @@ Function Invoke-Decimation {
 	.LINK
 		https://github.com/Panzerbjrn/TestingModule
 #>
-
 	[CmdletBinding(SupportsShouldProcess=$true,ConfirmImpact='High')]
 	param(
 		[Parameter(Position = 0)]

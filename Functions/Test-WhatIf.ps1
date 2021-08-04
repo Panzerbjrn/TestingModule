@@ -20,9 +20,13 @@ Function Test-WhatIf {
 
 	.EXAMPLE
 		Test-WhatIf -FilePath C:\Temp\TestWhatIf.txt
+		
+		This will create a new file if the impact is confirmed.
 
 	.EXAMPLE
 		Test-WhatIf -FilePath C:\Temp\TestWhatIf.txt -WhatIf
+		
+		This will show the What If output.
 
 	.LINK
 		https://github.com/Panzerbjrn/TestingModule
