@@ -1,0 +1,19 @@
+name: Hello World
+
+on: [repository_dispatch]
+
+jobs:
+  hello-world:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Run PowerShell Hello World script
+      if: github.event.action == 'inline'
+      run: Write-Output 'Hello World!'
+    - name: Run a multi-line PowerShell script
+      if: github.event.action == 'inline'
+      run: |
+        $psversiontable;
+        Get-Process;
