@@ -1,7 +1,7 @@
 Function Test-ObjectInput
 {
 Param (
-	[Parameter(Mandatory)][psobject]$PSObjectInput
+		[Parameter(Mandatory)][psobject]$PSObjectInput
 	)
 
 	$HashTable = @()
