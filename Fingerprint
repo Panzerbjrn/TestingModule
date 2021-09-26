@@ -11,8 +11,8 @@ Invoke-Decimation:InformationVariable
 Invoke-Decimation:OutVariable
 Invoke-Decimation:OutBuffer
 Invoke-Decimation:PipelineVariable
-Invoke-Decimation:Confirm
 Invoke-Decimation:WhatIf
+Invoke-Decimation:Confirm
 Ping-Computer:ComputerName
 Test-AddFile:Number
 Test-AddFile:Verbose
@@ -63,6 +63,18 @@ Test-ExampleCSV:InformationVariable
 Test-ExampleCSV:OutVariable
 Test-ExampleCSV:OutBuffer
 Test-ExampleCSV:PipelineVariable
+Test-HashTableInput:HashTable
+Test-HashTableInput:Verbose
+Test-HashTableInput:Debug
+Test-HashTableInput:ErrorAction
+Test-HashTableInput:WarningAction
+Test-HashTableInput:InformationAction
+Test-HashTableInput:ErrorVariable
+Test-HashTableInput:WarningVariable
+Test-HashTableInput:InformationVariable
+Test-HashTableInput:OutVariable
+Test-HashTableInput:OutBuffer
+Test-HashTableInput:PipelineVariable
 Test-LoopFunction:JobID
 Test-LoopFunction:Verbose
 Test-LoopFunction:Debug
@@ -139,8 +151,8 @@ Test-ShouldProcess:InformationVariable
 Test-ShouldProcess:OutVariable
 Test-ShouldProcess:OutBuffer
 Test-ShouldProcess:PipelineVariable
-Test-ShouldProcess:Confirm
 Test-ShouldProcess:WhatIf
+Test-ShouldProcess:Confirm
 Test-StringParam:TestArray
 Test-StringParam:TestNotArray
 Test-StringParam:Verbose
@@ -192,5 +204,5 @@ Test-WhatIf:InformationVariable
 Test-WhatIf:OutVariable
 Test-WhatIf:OutBuffer
 Test-WhatIf:PipelineVariable
-Test-WhatIf:Confirm
 Test-WhatIf:WhatIf
+Test-WhatIf:Confirm
