@@ -29,12 +29,10 @@ Function Test-ShouldProcess {
 
 	Begin {
 		Write-Verbose "Beginning $($MyInvocation.Mycommand)"
-		if (-not $PSBoundParameters.ContainsKey('Confirm'))
-		{
+		if (-not $PSBoundParameters.ContainsKey('Confirm')){
 			$ConfirmPreference = $PSCmdlet.SessionState.PSVariable.GetValue('ConfirmPreference')
 		}
-		if (-not $PSBoundParameters.ContainsKey('WhatIf'))
-		{
+		if (-not $PSBoundParameters.ContainsKey('WhatIf')){
 			$WhatIfPreference = $PSCmdlet.SessionState.PSVariable.GetValue('WhatIfPreference')
 		}
 	}
@@ -42,12 +40,9 @@ Function Test-ShouldProcess {
 	Process
 	{
 		# Preparation
-
-		if ($PSCmdlet.ShouldProcess("ShouldProcess?"))
-		{
+		if ($PSCmdlet.ShouldProcess("ShouldProcess?")){
 			# Critical code
 		}
-
 		# Cleanup
 	}
 }
