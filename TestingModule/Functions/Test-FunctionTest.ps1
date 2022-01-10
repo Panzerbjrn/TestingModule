@@ -1,5 +1,4 @@
 Function Test-FunctionTest {
-
-Write-Output "Function Test"
-Test-HelperTest
+    Write-Output "Function Test"
+    Test-HelperTest
 }

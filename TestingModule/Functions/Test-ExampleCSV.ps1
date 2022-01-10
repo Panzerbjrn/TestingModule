@@ -2,7 +2,7 @@ Function Test-ExampleCSV
 {
 	[CmdletBinding()]
 	Param (
-	[Parameter(Mandatory)][string[]]$CSVFile
+		[Parameter(Mandatory)][string[]]$CSVFile
 	)
 	$CSVContent = Import-CSV -Path $CSVFile -ErrorAction STOP
 	ForEach ($Item in $CSVContent)

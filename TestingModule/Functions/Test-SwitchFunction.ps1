@@ -25,6 +25,7 @@ Function Test-SwitchFunction
 	.LINK
 		https://github.com/Panzerbjrn/ADtoolsModule
 #>
+	[CmdletBinding()]
 	Param (
 		[Parameter()][ValidateSet("Size","Name","DateCreated")][string]$SortOrder,
 		[Parameter()][switch]$Descending

@@ -1,8 +1,9 @@
 Function Test-ReturningObject
 {
-Param (
-	[Parameter(Mandatory)][string[]]$TestArray,
-	[Parameter(Mandatory)][string]$TestNotArray
+	[CmdletBinding()]
+	Param (
+		[Parameter(Mandatory)][string[]]$TestArray,
+		[Parameter(Mandatory)][string]$TestNotArray
 	)
 
 	$HashTable = @()
