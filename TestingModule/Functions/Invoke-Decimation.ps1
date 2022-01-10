@@ -28,6 +28,7 @@ Function Invoke-Decimation {
 		https://github.com/Panzerbjrn/TestingModule
 #>
 	[CmdletBinding(SupportsShouldProcess=$true,ConfirmImpact='High')]
+	[Alias('DecimateNow')]
 	param(
 		[Parameter(Position = 0)]
 		[ValidateNotNullOrEmpty()]
