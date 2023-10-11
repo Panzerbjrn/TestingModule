@@ -1,5 +1,4 @@
-Function Test-HashTableInput
-{
+Function Test-HashTableInput {
 	[CmdletBinding()]
 	Param(
 		[Parameter(Mandatory)][hashtable]$HashTable

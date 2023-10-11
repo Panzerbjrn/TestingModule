@@ -1,5 +1,4 @@
-Function Test-LoopFunction
-{
+Function Test-LoopFunction {
 	<#
 	.SYNOPSIS
 		This function will loop through a job and return to the console when the job is done.
@@ -39,6 +38,6 @@ Function Test-LoopFunction
 		IF($JobLoop.State -eq "Running") {"Cogitating";Sleep 5}
 	}
 	While ($JobLoop.State -eq "Running")
-	"Done"
+	Write-OutPut "Done"
 	$JobLoop
 }

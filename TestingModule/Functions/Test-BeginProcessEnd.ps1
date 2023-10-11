@@ -1,5 +1,4 @@
-Function Test-BeginProcessEnd
-{
+Function Test-BeginProcessEnd{
 <#
 	.SYNOPSIS
 		Test example of Begin/Process/End blocks
@@ -10,27 +9,23 @@ Function Test-BeginProcessEnd
 		[int[]]$Number
 	)
 
-	BEGIN
-	{
+	BEGIN{
 		Write-Host "`nIn Begin block"
 		[int]$I = 1
 		[int]$FinalNumber = 0
 		Write-Verbose "Number of numbers is $($Number.count)"
 	}
-	PROCESS
-	{
+	PROCESS{
 		Write-Host "`nIn Process block"
 		Write-Verbose "Number is $($Number)"
 		Write-Verbose "`$I is $($I)"
 		$I++
-		ForEach ($Item in $Number)
-		{
+		ForEach ($Item in $Number){
 			Write-Verbose " `$Item is $($Item)"
 			$FinalNumber = $FinalNumber + $Item
 		}
 	}
-	END
-	{
+	END{
 		Write-Host "`nIn End block"
 		Write-Verbose "Final total of `$I is $($I)"
 		Write-Verbose "Final total of `$Number is $($FinalNumber)"

@@ -1,5 +1,4 @@
-Function Test-ArrayParam
-{
+Function Test-ArrayParam {
 	[CmdletBinding()]
 	Param (
 		[Parameter(Mandatory)][string[]]$TestArray,
@@ -8,8 +7,7 @@ Function Test-ArrayParam
 	"Test Array is: $TestArray"
 	"TestNotArray is: $TestNotArray"
 	[int]$I = 1
-	ForEach ($Item in $TestArray)
-	{
+	ForEach ($Item in $TestArray){
 		$I;$I++
 		$Item
 	}

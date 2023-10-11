@@ -1,5 +1,4 @@
-Function Test-ArgParams
-{
+Function Test-ArgParams {
 	$ParameterOne = $args[0]
 	$ParameterTwo = $args[1]
 	Write-Output "ParameterOne is $($ParameterOne)"

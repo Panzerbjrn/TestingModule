@@ -31,8 +31,7 @@ Function Test-SwitchFunction
 		[Parameter()][switch]$Descending
 	)
 
-	Switch ($SortOrder)
-	{
+	Switch ($SortOrder){
 		{($_ -eq "Size") -AND ($Descending)}{"Size $ Desscending";Break}
 		{($_ -eq "Size") -AND (!($Descending))}{"Size $ not Desscending";Break}
 		{($_ -eq "Name") -AND ($Descending)}{"Size $ Desscending";Break}

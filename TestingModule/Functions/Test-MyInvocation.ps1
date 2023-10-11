@@ -1,15 +1,12 @@
-Function Test-MyInvocation
-{
+Function Test-MyInvocation {
 	[CmdletBinding()]
 	Param (
 		[Parameter()][switch]$OneDrive
 	)
-	Begin
-	{
+	Begin{
 		Write-Verbose "Beginning $($MyInvocation.Mycommand)" -Verbose
 	}
-	Process
-	{
+	Process{
 		#Write-Verbose "Processing $($MyInvocation.BoundParameter)"
 		Write-Host "Processing $($MyInvocation.Mycommand.Name)"
 		Write-Host "Processing $($MyInvocation.ScriptName)"
@@ -18,8 +15,7 @@ Function Test-MyInvocation
 		Write-Host "ScriptLineNumber is $($MyInvocation.ScriptLineNumber)"
 		#$MyInvocation | GM
 	}
-	END
-	{
+	END{
 		Write-Verbose "Ending $($MyInvocation.Mycommand)" -Verbose
 	}
 }
