@@ -1,5 +1,4 @@
-Function Test-ParamSets
-{
+Function Test-ParamSets {
 	[CmdletBinding()]
 	Param(
 		[Parameter(ParameterSetName='Name')]

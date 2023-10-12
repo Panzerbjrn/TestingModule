@@ -1,5 +1,4 @@
-Function Test-ObjectInput
-{
+Function Test-ObjectInput {
 	[CmdletBinding()]
 	Param (
 		[Parameter(Mandatory)][psobject]$PSObjectInput

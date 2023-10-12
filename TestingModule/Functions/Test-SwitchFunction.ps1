@@ -1,5 +1,4 @@
-Function Test-SwitchFunction
-{
+Function Test-SwitchFunction {
 <#
 	.SYNOPSIS
 		Test Synopsis

@@ -1,5 +1,4 @@
-Function Test-Switch
-{
+Function Test-Switch {
 	[CmdletBinding()]
 	param(
 		[Parameter(HelpMessage='What path would you like to target?')]

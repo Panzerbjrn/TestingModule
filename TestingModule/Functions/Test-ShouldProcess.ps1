@@ -27,7 +27,7 @@ Function Test-ShouldProcess {
 	[CmdletBinding(SupportsShouldProcess,ConfirmImpact='Medium')]
 	param()
 
-	Begin {
+	Begin{
 		Write-Verbose "Beginning $($MyInvocation.Mycommand)"
 		if (-not $PSBoundParameters.ContainsKey('Confirm')){
 			$ConfirmPreference = $PSCmdlet.SessionState.PSVariable.GetValue('ConfirmPreference')
@@ -37,8 +37,7 @@ Function Test-ShouldProcess {
 		}
 	}
 
-	Process
-	{
+	Process{
 		# Preparation
 		if ($PSCmdlet.ShouldProcess("ShouldProcess?")){
 			# Critical code

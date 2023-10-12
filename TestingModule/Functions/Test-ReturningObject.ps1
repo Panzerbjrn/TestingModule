@@ -1,5 +1,4 @@
-Function Test-ReturningObject
-{
+Function Test-ReturningObject {
 	[CmdletBinding()]
 	Param (
 		[Parameter(Mandatory)][string[]]$TestArray,
@@ -10,8 +9,7 @@ Function Test-ReturningObject
 	Write-Verbose "Test Array is: $TestArray"
 	Write-Verbose "TestNotArray is: $TestNotArray"
 	[int]$I = 1
-	ForEach ($Item in $TestArray)
-	{
+	ForEach ($Item in $TestArray){
 		Write-Verbose "$I"
 		$I++
 		Write-Verbose "$Item"
