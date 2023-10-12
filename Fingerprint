@@ -22,8 +22,8 @@ Invoke-Decimation:InformationVariable
 Invoke-Decimation:OutVariable
 Invoke-Decimation:OutBuffer
 Invoke-Decimation:PipelineVariable
-Invoke-Decimation:Confirm
 Invoke-Decimation:WhatIf
+Invoke-Decimation:Confirm
 Ping-Computer:ComputerName
 Ping-Computer:Verbose
 Ping-Computer:Debug
@@ -173,8 +173,8 @@ Test-ShouldProcess:InformationVariable
 Test-ShouldProcess:OutVariable
 Test-ShouldProcess:OutBuffer
 Test-ShouldProcess:PipelineVariable
-Test-ShouldProcess:Confirm
 Test-ShouldProcess:WhatIf
+Test-ShouldProcess:Confirm
 Test-StringParam:TestArray
 Test-StringParam:TestNotArray
 Test-StringParam:Verbose
@@ -226,5 +226,5 @@ Test-WhatIf:InformationVariable
 Test-WhatIf:OutVariable
 Test-WhatIf:OutBuffer
 Test-WhatIf:PipelineVariable
-Test-WhatIf:Confirm
 Test-WhatIf:WhatIf
+Test-WhatIf:Confirm
