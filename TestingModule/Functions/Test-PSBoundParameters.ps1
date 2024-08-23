@@ -1,7 +1,7 @@
 Function Test-PSBoundParameters {
-   param(
+    param(
       [string]$Text,
-      [int]$demoNumber
+      [int]$Number
    )
 
    # Display all the passed parameters:
@@ -10,7 +10,7 @@ Function Test-PSBoundParameters {
    # or with a switch statement:
    switch ($PSBoundParameters.Keys) {
             'Text' { write-output ' A value for Text was supplied' }
-            'demoNumber' { write-output ' A value for demoNumber was supplied'  }
+            'Number' { write-output ' A value for Number was supplied'  }
        }
 
    # or looping through all the key/value pairs
@@ -19,19 +19,5 @@ Function Test-PSBoundParameters {
    }
 
    # or Call a second function passing all the parameters plus any extra if needed:
-   DemoFunc2 @PSBoundParameters -ExtraDemoParam 'Testing 123'
+   Test-PSBoundParametersPriv @PSBoundParameters -ExtraDemoParam 'Testing 123'
 }
-
-Function DemoFunc2 {
-   param(
-      [string]$Text,
-      [int]$demoNumber,
-      [string]$ExtraDemoParam
-   )
-   Write-Output "$Text $demoNumber $ExtraDemoParam"
-}
-You can also check for the existence of a specific key with $PSBoundParameters.ContainsKey('Text') or $PSBoundParameters['Text']
-
-   If ($PSBoundParameters.ContainsKey('Text')) {
-      Write-Output -InputObject "Text has been included as: '$Text'"
-   }
