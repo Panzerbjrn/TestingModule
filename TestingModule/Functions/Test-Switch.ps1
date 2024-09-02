@@ -1,5 +1,17 @@
 Function Test-Switch {
+	<#
+		.SYNOPSIS
+			Describe the function here
+
+		.DESCRIPTION
+			Describe the function in more detail
+
+		.EXAMPLE
+			Give an example of how to use it
+
+	#>
 	[CmdletBinding()]
+
 	param(
 		[Parameter(HelpMessage='What path would you like to target?')]
 		[Alias('Target')]

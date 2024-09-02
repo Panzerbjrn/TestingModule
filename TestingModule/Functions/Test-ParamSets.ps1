@@ -1,5 +1,17 @@
 Function Test-ParamSets {
+	<#
+		.SYNOPSIS
+			Describe the function here
+
+		.DESCRIPTION
+			Describe the function in more detail
+
+		.EXAMPLE
+			Give an example of how to use it
+
+	#>
 	[CmdletBinding()]
+
 	Param(
 		[Parameter(ParameterSetName='Name')]
 		[Parameter(ParameterSetName='ID')]
