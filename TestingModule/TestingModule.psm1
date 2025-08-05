@@ -2,7 +2,7 @@
 #	Thought for the day: It is a rough road that leads to the heights of greatness. - Lucius Annaeus Seneca
 #	NAME: TestModule.psm1
 #	AUTHOR: Lars Petersson
-#	CONTACT: lpetersson@hotmail.com / GitHub: Panzerbjrn / Twitter: LPetersson
+#	GitHub: Panzerbjrn
 #	DATE: 2019.01.18
 #	VERSION: 1.0 - 2019.01.18 - Manifest and Module files created
 #
