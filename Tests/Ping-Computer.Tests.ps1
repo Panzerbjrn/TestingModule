@@ -4,8 +4,8 @@ Describe 'Mock Ping-Computer' {
 		Ping-Computer -ComputerName 'DOESNOTMATTER'
 	}
 
-	it 'should return $false when the computer is offline' {
-		mock 'Test-Connection' -MockWith { $false }
+	it 'should return $False when the computer is offline' {
+		mock 'Test-Connection' -MockWith { $False }
 		Ping-Computer -ComputerName 'DOESNOTMATTER'
 	}
 }
@@ -15,7 +15,7 @@ describe 'Test Ping-Computer' {
 	Ping-Computer -ComputerName $env:COMPUTERNAME | Should -Be $true
 	}
 
-	it 'should  return $false when the computer is offline' {
-		Ping-Computer -ComputerName 'DOESNOTMATTER' | Should -Be $false
+	it 'should  return $False when the computer is offline' {
+		Ping-Computer -ComputerName 'DOESNOTMATTER' | Should -Be $False
 	}
 }

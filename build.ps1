@@ -94,12 +94,12 @@ task DebugBuild -if ($Configuration -eq "debug") {
     $privateFunctions = Get-ChildItem -Path ".\Source\Private\*.ps1"
     try {
         Write-Verbose -Message "Appending Public functions to the psm file"
-        $functionsToExport = New-Object -TypeName System.Collections.ArrayList
-        foreach($function in $publicFunctions.Name){
-            write-Verbose -Message "Exporting function: $(($function.split('.')[0]).ToString())"
-            $functionsToExport.Add(($function.split('.')[0]).ToString())
+        $FunctionsToExport = New-Object -TypeName System.Collections.ArrayList
+        foreach($Function in $publicFunctions.Name){
+            write-Verbose -Message "Exporting function: $(($Function.split('.')[0]).ToString())"
+            $FunctionsToExport.Add(($Function.split('.')[0]).ToString())
         }
-        Update-ModuleManifest -Path ".\Output\temp\$($ModuleName)\$($ModuleVersion)\$($ModuleName).psd1" -FunctionsToExport $functionsToExport
+        Update-ModuleManifest -Path ".\Output\temp\$($ModuleName)\$($ModuleVersion)\$($ModuleName).psd1" -FunctionsToExport $FunctionsToExport
     }
     catch {
         throw "Failed updating Module manifest with public functions"
@@ -108,51 +108,51 @@ task DebugBuild -if ($Configuration -eq "debug") {
     Write-Verbose -Message "Building the .psm1 file"
     Write-Verbose -Message "Appending Public Functions"
     Add-Content -Path $ModuleFile -Value "### --- PUBLIC FUNCTIONS --- ###"
-    foreach($function in $publicFunctions.Name){
+    foreach($Function in $publicFunctions.Name){
         try {
-            Write-Verbose -Message "Updating the .psm1 file with function: $($function)"
-            $content = Get-Content -Path ".\Source\Public\$($function)"
-            Add-Content -Path $ModuleFile -Value "#Region - $function"
+            Write-Verbose -Message "Updating the .psm1 file with function: $($Function)"
+            $content = Get-Content -Path ".\Source\Public\$($Function)"
+            Add-Content -Path $ModuleFile -Value "#Region - $Function"
             Add-Content -Path $ModuleFile -Value $content
             if($ExportAlias.IsPresent){
-                $AliasSwitch = $false
-                $Sel = Select-String -Path ".\Source\Public\$($function)" -Pattern "CmdletBinding" -Context 0,1
-                $mylist = $Sel.ToString().Split([Environment]::NewLine)
-                foreach($s in $mylist){
+                $AliasSwitch = $False
+                $Sel = Select-String -Path ".\Source\Public\$($Function)" -Pattern "CmdletBinding" -Context 0,1
+                $Mylist = $Sel.ToString().Split([Environment]::NewLine)
+                foreach($s in $Mylist){
                     if($s -match "Alias"){
                         $alias = (($s.split(":")[2]).split("(")[1]).split(")")[0]
-                        Write-Verbose -Message "Exporting Alias: $($alias) to Function: $($function)"
-                        Add-Content -Path $ModuleFile -Value "Export-ModuleMember -Function $(($function.split('.')[0]).ToString()) -Alias $alias"
+                        Write-Verbose -Message "Exporting Alias: $($alias) to Function: $($Function)"
+                        Add-Content -Path $ModuleFile -Value "Export-ModuleMember -Function $(($Function.split('.')[0]).ToString()) -Alias $alias"
                         $AliasSwitch = $true
                     }
                 }
-                if($AliasSwitch -eq $false){
-                    Write-Verbose -Message "No alias was found in function: $($function))"
-                    Add-Content -Path $ModuleFile -Value "Export-ModuleMember -Function $(($function.split('.')[0]).ToString())"
+                if($AliasSwitch -eq $False){
+                    Write-Verbose -Message "No alias was found in function: $($Function))"
+                    Add-Content -Path $ModuleFile -Value "Export-ModuleMember -Function $(($Function.split('.')[0]).ToString())"
                 }
             }
             else {
-                Add-Content -Path $ModuleFile -Value "Export-ModuleMember -Function $(($function.split('.')[0]).ToString())"
+                Add-Content -Path $ModuleFile -Value "Export-ModuleMember -Function $(($Function.split('.')[0]).ToString())"
             }
-            Add-Content -Path $ModuleFile -Value "#EndRegion - $function"            
+            Add-Content -Path $ModuleFile -Value "#EndRegion - $Function"
         }
         catch {
-            throw "Failed adding content to .psm1 for function: $($function)"
+            throw "Failed adding content to .psm1 for function: $($Function)"
         }
     }
 
     Write-Verbose -Message "Appending Private functions"
     Add-Content -Path $ModuleFile -Value "### --- PRIVATE FUNCTIONS --- ###"
-    foreach($function in $privateFunctions.Name){
+    foreach($Function in $privateFunctions.Name){
         try {
-            Write-Verbose -Message "Updating the .psm1 file with function: $($function)"
-            $content = Get-Content -Path ".\Source\Private\$($function)"
-            Add-Content -Path $ModuleFile -Value "#Region - $function"
+            Write-Verbose -Message "Updating the .psm1 file with function: $($Function)"
+            $content = Get-Content -Path ".\Source\Private\$($Function)"
+            Add-Content -Path $ModuleFile -Value "#Region - $Function"
             Add-Content -Path $ModuleFile -Value $content
-            Add-Content -Path $ModuleFile -Value "#EndRegion - $function"            
+            Add-Content -Path $ModuleFile -Value "#EndRegion - $Function"
         }
         catch {
-            throw "Failed adding content to .psm1 for function: $($function)"
+            throw "Failed adding content to .psm1 for function: $($Function)"
         }
     }
 }
@@ -193,7 +193,7 @@ task Build -if($Configuration -eq "Release"){
         Remove-Item -Path ".\Output\$($ModuleName)" -Recurse -Force
     }
     try {
-        
+
         New-Item -Path ".\Output\$($ModuleName)\$($ModuleVersion)" -ItemType Directory
     }
     catch {
@@ -212,12 +212,12 @@ task Build -if($Configuration -eq "Release"){
     Write-Verbose -Message "Updating Module Manifest with Public Functions"
     try {
         Write-Verbose -Message "Appending Public functions to the psm file"
-        $functionsToExport = New-Object -TypeName System.Collections.ArrayList
-        foreach($function in $publicFunctions.Name){
-            write-Verbose -Message "Exporting function: $(($function.split('.')[0]).ToString())"
-            $functionsToExport.Add(($function.split('.')[0]).ToString())
+        $FunctionsToExport = New-Object -TypeName System.Collections.ArrayList
+        foreach($Function in $publicFunctions.Name){
+            write-Verbose -Message "Exporting function: $(($Function.split('.')[0]).ToString())"
+            $FunctionsToExport.Add(($Function.split('.')[0]).ToString())
         }
-        Update-ModuleManifest -Path ".\Output\$($ModuleName)\$($ModuleVersion)\$($ModuleName).psd1" -FunctionsToExport $functionsToExport
+        Update-ModuleManifest -Path ".\Output\$($ModuleName)\$($ModuleVersion)\$($ModuleName).psd1" -FunctionsToExport $FunctionsToExport
     }
     catch {
         throw "Failed updating Module manifest with public functions"
@@ -226,51 +226,51 @@ task Build -if($Configuration -eq "Release"){
     Write-Verbose -Message "Building the .psm1 file"
     Write-Verbose -Message "Appending Public Functions"
     Add-Content -Path $ModuleFile -Value "### --- PUBLIC FUNCTIONS --- ###"
-    foreach($function in $publicFunctions.Name){
+    foreach($Function in $publicFunctions.Name){
         try {
-            Write-Verbose -Message "Updating the .psm1 file with function: $($function)"
-            $content = Get-Content -Path ".\Source\Public\$($function)"
-            Add-Content -Path $ModuleFile -Value "#Region - $function"
+            Write-Verbose -Message "Updating the .psm1 file with function: $($Function)"
+            $content = Get-Content -Path ".\Source\Public\$($Function)"
+            Add-Content -Path $ModuleFile -Value "#Region - $Function"
             Add-Content -Path $ModuleFile -Value $content
             if($ExportAlias.IsPresent){
-                $AliasSwitch = $false
-                $Sel = Select-String -Path ".\Source\Public\$($function)" -Pattern "CmdletBinding" -Context 0,1
-                $mylist = $Sel.ToString().Split([Environment]::NewLine)
-                foreach($s in $mylist){
+                $AliasSwitch = $False
+                $Sel = Select-String -Path ".\Source\Public\$($Function)" -Pattern "CmdletBinding" -Context 0,1
+                $Mylist = $Sel.ToString().Split([Environment]::NewLine)
+                foreach($s in $Mylist){
                     if($s -match "Alias"){
                         $alias = (($s.split(":")[2]).split("(")[1]).split(")")[0]
-                        Write-Verbose -Message "Exporting Alias: $($alias) to Function: $($function)"
-                        Add-Content -Path $ModuleFile -Value "Export-ModuleMember -Function $(($function.split('.')[0]).ToString()) -Alias $alias"
+                        Write-Verbose -Message "Exporting Alias: $($alias) to Function: $($Function)"
+                        Add-Content -Path $ModuleFile -Value "Export-ModuleMember -Function $(($Function.split('.')[0]).ToString()) -Alias $alias"
                         $AliasSwitch = $true
                     }
                 }
-                if($AliasSwitch -eq $false){
-                    Write-Verbose -Message "No alias was found in function: $($function))"
-                    Add-Content -Path $ModuleFile -Value "Export-ModuleMember -Function $(($function.split('.')[0]).ToString())"
+                if($AliasSwitch -eq $False){
+                    Write-Verbose -Message "No alias was found in function: $($Function))"
+                    Add-Content -Path $ModuleFile -Value "Export-ModuleMember -Function $(($Function.split('.')[0]).ToString())"
                 }
             }
             else {
-                Add-Content -Path $ModuleFile -Value "Export-ModuleMember -Function $(($function.split('.')[0]).ToString())"
+                Add-Content -Path $ModuleFile -Value "Export-ModuleMember -Function $(($Function.split('.')[0]).ToString())"
             }
-            Add-Content -Path $ModuleFile -Value "#EndRegion - $function"            
+            Add-Content -Path $ModuleFile -Value "#EndRegion - $Function"
         }
         catch {
-            throw "Failed adding content to .psm1 for function: $($function)"
+            throw "Failed adding content to .psm1 for function: $($Function)"
         }
     }
 
     Write-Verbose -Message "Appending Private functions"
     Add-Content -Path $ModuleFile -Value "### --- PRIVATE FUNCTIONS --- ###"
-    foreach($function in $privateFunctions.Name){
+    foreach($Function in $privateFunctions.Name){
         try {
-            Write-Verbose -Message "Updating the .psm1 file with function: $($function)"
-            $content = Get-Content -Path ".\Source\Private\$($function)"
-            Add-Content -Path $ModuleFile -Value "#Region - $function"
+            Write-Verbose -Message "Updating the .psm1 file with function: $($Function)"
+            $content = Get-Content -Path ".\Source\Private\$($Function)"
+            Add-Content -Path $ModuleFile -Value "#Region - $Function"
             Add-Content -Path $ModuleFile -Value $content
-            Add-Content -Path $ModuleFile -Value "#EndRegion - $function"            
+            Add-Content -Path $ModuleFile -Value "#EndRegion - $Function"
         }
         catch {
-            throw "Failed adding content to .psm1 for function: $($function)"
+            throw "Failed adding content to .psm1 for function: $($Function)"
         }
     }
 
