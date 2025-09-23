@@ -42,3 +42,6 @@ Foreach ($Import in @($Functions + $Helpers))
 }
 
 Export-ModuleMember -Function $Functions.Basename
+
+$Script:TestModuleVar1 = "This is a module variable"
+$Script:TestModuleVar2 = "This is another module variable"
