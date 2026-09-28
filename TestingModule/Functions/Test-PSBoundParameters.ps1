@@ -30,14 +30,14 @@ Function Test-PSBoundParameters {
 
     # or looping through all the key/value pairs
     "or looping through all the key/value pairs"
-    foreach($boundparam in $PSBoundParameters.GetEnumerator()) {
+    ForEach ($boundparam in $PSBoundParameters.GetEnumerator()) {
         "Key={0} Value={1}" -f $boundparam.Key,$boundparam.Value
     }
 
 
     "Testing removing"
     $splat = [hashtable]::new()
-    foreach ( $items in $PSBoundParameters.GetEnumerator() ) {
+    ForEach ( $items in $PSBoundParameters.GetEnumerator() ) {
     $Splat[$item.Key] = $item.Value }
     $splat.Remove("Text")
     $splat

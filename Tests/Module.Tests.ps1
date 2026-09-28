@@ -56,7 +56,7 @@ Describe "Validating commands are viable" -Tag 'Command_Validation' {
 
 		#Write-Host "Functions path: $Functions"
 		$AllFunctions 	= Get-ChildItem -Path $Functions -Include *.ps1 -Recurse
-		$TestCase = $AllFunctions | Foreach-Object {@{file=$_}}
+		$TestCase = $AllFunctions | ForEach-Object {@{file=$_}}
 		#Write-Host "Test cases generated: $($TestCase | Out-String)"
 
 		It "Script <file> should be valid powershell" -TestCases $TestCase {
@@ -103,7 +103,7 @@ Describe "Validating commands are viable" -Tag 'Command_Validation' {
 
 		#Write-Host 'Context: Private helpers should be viable'
 		$AllHelpers = Get-ChildItem -Path $Functions -Include *.ps1 -Recurse
-		$TestCase 	= $AllHelpers | Foreach-Object {@{file=$_}}
+		$TestCase 	= $AllHelpers | ForEach-Object {@{file=$_}}
 		#Write-Host "Test cases generated: $($TestCase | Out-String)"
 
 		It "Script <file> should be valid powershell" -TestCases $TestCase {

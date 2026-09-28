@@ -95,7 +95,7 @@ task DebugBuild -IF($Configuration -eq "debug") {
     TRY{
         Write-Verbose -Message "Appending Public functions to the psm file"
         $FunctionsToExport = New-Object -TypeName System.Collections.ArrayList
-        foreach($Function in $publicFunctions.Name){
+        ForEach ($Function in $publicFunctions.Name){
             write-Verbose -Message "Exporting function: $(($Function.split('.')[0]).ToString())"
             $FunctionsToExport.Add(($Function.split('.')[0]).ToString())
         }
@@ -108,7 +108,7 @@ task DebugBuild -IF($Configuration -eq "debug") {
     Write-Verbose -Message "Building the .psm1 file"
     Write-Verbose -Message "Appending Public Functions"
     Add-Content -Path $ModuleFile -Value "### --- PUBLIC FUNCTIONS --- ###"
-    foreach($Function in $publicFunctions.Name){
+    ForEach ($Function in $publicFunctions.Name){
         TRY{
             Write-Verbose -Message "Updating the .psm1 file with function: $($Function)"
             $content = Get-Content -Path ".\Source\Public\$($Function)"
@@ -118,7 +118,7 @@ task DebugBuild -IF($Configuration -eq "debug") {
                 $AliasSwitch = $False
                 $Sel = Select-String -Path ".\Source\Public\$($Function)" -Pattern "CmdletBinding" -Context 0,1
                 $Mylist = $Sel.ToString().Split([Environment]::NewLine)
-                foreach($s in $Mylist){
+                ForEach ($s in $Mylist){
                     if($s -match "Alias"){
                         $alias = (($s.split(":")[2]).split("(")[1]).split(")")[0]
                         Write-Verbose -Message "Exporting Alias: $($alias) to Function: $($Function)"
@@ -143,7 +143,7 @@ task DebugBuild -IF($Configuration -eq "debug") {
 
     Write-Verbose -Message "Appending Private functions"
     Add-Content -Path $ModuleFile -Value "### --- PRIVATE FUNCTIONS --- ###"
-    foreach($Function in $privateFunctions.Name){
+    ForEach ($Function in $privateFunctions.Name){
         TRY{
             Write-Verbose -Message "Updating the .psm1 file with function: $($Function)"
             $content = Get-Content -Path ".\Source\Private\$($Function)"
@@ -213,7 +213,7 @@ task Build -if($Configuration -eq "Release"){
     TRY{
         Write-Verbose -Message "Appending Public functions to the psm file"
         $FunctionsToExport = New-Object -TypeName System.Collections.ArrayList
-        foreach($Function in $publicFunctions.Name){
+        ForEach ($Function in $publicFunctions.Name){
             write-Verbose -Message "Exporting function: $(($Function.split('.')[0]).ToString())"
             $FunctionsToExport.Add(($Function.split('.')[0]).ToString())
         }
@@ -226,7 +226,7 @@ task Build -if($Configuration -eq "Release"){
     Write-Verbose -Message "Building the .psm1 file"
     Write-Verbose -Message "Appending Public Functions"
     Add-Content -Path $ModuleFile -Value "### --- PUBLIC FUNCTIONS --- ###"
-    foreach($Function in $publicFunctions.Name){
+    ForEach ($Function in $publicFunctions.Name){
         TRY{
             Write-Verbose -Message "Updating the .psm1 file with function: $($Function)"
             $content = Get-Content -Path ".\Source\Public\$($Function)"
@@ -236,7 +236,7 @@ task Build -if($Configuration -eq "Release"){
                 $AliasSwitch = $False
                 $Sel = Select-String -Path ".\Source\Public\$($Function)" -Pattern "CmdletBinding" -Context 0,1
                 $Mylist = $Sel.ToString().Split([Environment]::NewLine)
-                foreach($s in $Mylist){
+                ForEach ($s in $Mylist){
                     if($s -match "Alias"){
                         $alias = (($s.split(":")[2]).split("(")[1]).split(")")[0]
                         Write-Verbose -Message "Exporting Alias: $($alias) to Function: $($Function)"
@@ -261,7 +261,7 @@ task Build -if($Configuration -eq "Release"){
 
     Write-Verbose -Message "Appending Private functions"
     Add-Content -Path $ModuleFile -Value "### --- PRIVATE FUNCTIONS --- ###"
-    foreach($Function in $privateFunctions.Name){
+    ForEach ($Function in $privateFunctions.Name){
         TRY{
             Write-Verbose -Message "Updating the .psm1 file with function: $($Function)"
             $content = Get-Content -Path ".\Source\Private\$($Function)"

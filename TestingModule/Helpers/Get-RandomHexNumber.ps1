@@ -41,7 +41,7 @@ Function Get-RandomHexNumber {
 			$rnd = new-object System.Security.Cryptography.RNGCryptoServiceProvider
 			$rnd.GetBytes($bytes)
 			$result = ""
-			1..$length | foreach-object{
+			1..$length | ForEach-Object{
 				$result += $chars[ $bytes[$_] % $chars.Length ]
 			}
 				$result

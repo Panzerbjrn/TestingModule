@@ -58,15 +58,13 @@ Function Test-WhatIf {
 					)){
 					$File = New-Item -Path $FilePath -ItemType File -Force -ErrorAction Stop
 				}
-			}
-			ELSE{
+			}ELSE{
 				Write-Verbose "Creating $FilePath"
 				IF($PSCmdlet.ShouldProcess($FilePath,"Create File")){
 					$File = New-Item -Path $FilePath -ItemType File -Force -ErrorAction Stop
 				}
 			}
-		}
-		CATCH{
+		}CATCH{
 			Throw "$($_.Exception.Message)"
 		}
 	}

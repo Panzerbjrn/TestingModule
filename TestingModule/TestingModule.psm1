@@ -28,7 +28,7 @@ $Functions  = @( Get-ChildItem -Path $PSScriptRoot\Functions\*.ps1 -ErrorAction 
 $Helpers = @( Get-ChildItem -Path $PSScriptRoot\Helpers\*.ps1 -ErrorAction SilentlyContinue )
 
 #Dot source the files
-Foreach ($Import in @($Functions + $Helpers))
+ForEach ($Import in @($Functions + $Helpers))
 {
 	Try
 	{
