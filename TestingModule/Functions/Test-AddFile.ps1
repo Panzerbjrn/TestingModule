@@ -16,10 +16,10 @@ Function Test-AddFile {
 		[Parameter(ValueFromPipeline)]
 		[int[]]$Number
 	)
-	Begin{
+	BEGIN{
 		Write-Verbose "Beginning $($MyInvocation.Mycommand)"
 	}
-	Process{
+	PROCESS{
 		Write-Verbose "Processing $($MyInvocation.Mycommand)"
 		$HexNumber = Get-RandomHexNumber
 		$NewFile = "$($PSScriptRoot)\CSV\AddedFile$Hexnumber.bak"

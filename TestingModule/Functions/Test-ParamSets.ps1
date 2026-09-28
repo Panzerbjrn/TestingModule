@@ -32,6 +32,6 @@ Function Test-ParamSets {
 	'Set name is: {0}' -f $PSCmdlet.ParameterSetName
 	'Name is: [{0}], ID is [{1}]' -f $Name, $ID
 
-	IF ("Name" -eq $PSCmdlet.ParameterSetName) {Write-Verbose "IF detected Name" -Verbose}
-	IF ("ID" -eq $PSCmdlet.ParameterSetName) {Write-Verbose "IF detected ID" -Verbose}
+	IF("Name" -eq $PSCmdlet.ParameterSetName) {Write-Verbose "IF detected Name" -Verbose}
+	IF("ID" -eq $PSCmdlet.ParameterSetName) {Write-Verbose "IF detected ID" -Verbose}
 }

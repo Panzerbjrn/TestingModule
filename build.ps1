@@ -6,38 +6,38 @@ param (
 
 task Init {
     Write-Verbose -Message "Initializing Module PSScriptAnalyzer"
-    if (-not(Get-Module -Name PSScriptAnalyzer -ListAvailable)){
+    IF(-not(Get-Module -Name PSScriptAnalyzer -ListAvailable)){
         Write-Warning "Module 'PSScriptAnalyzer' is missing or out of date. Installing module now."
         Install-Module -Name PSScriptAnalyzer -Scope CurrentUser -Force
     }
 
     Write-Verbose -Message "Initializing Module Pester"
-    if (-not(Get-Module -Name Pester -ListAvailable)){
+    IF(-not(Get-Module -Name Pester -ListAvailable)){
         Write-Warning "Module 'Pester' is missing or out of date. Installing module now."
         Install-Module -Name Pester -Scope CurrentUser -Force
     }
 
     Write-Verbose -Message "Initializing platyPS"
-    if (-not(Get-Module -Name platyPS -ListAvailable)){
+    IF(-not(Get-Module -Name platyPS -ListAvailable)){
         Write-Warning "Module 'platyPS' is missing or out of date. Installing module now."
         Install-Module -Name platyPS -Scope CurrentUser -Force
     }
 
     Write-Verbose -Message "Initializing PowerShellGet"
-    if (-not(Get-Module -Name PowerShellGet -ListAvailable)){
+    IF(-not(Get-Module -Name PowerShellGet -ListAvailable)){
         Write-Warning "Module 'PowerShellGet' is missing or out of date. Installing module now."
         Install-Module -Name PowerShellGet -Scope CurrentUser -Force
     }
 }
 
 task Test {
-    try {
+    TRY{
         Write-Verbose -Message "Running PSScriptAnalyzer on Public functions"
         Invoke-ScriptAnalyzer ".\Source\Public" -Recurse
         Write-Verbose -Message "Running PSScriptAnalyzer on Private functions"
         Invoke-ScriptAnalyzer ".\Source\Private" -Recurse
     }
-    catch {
+    CATCH{
         throw "Couldn't run Script Analyzer"
     }
 
@@ -48,7 +48,7 @@ task Test {
     }
 }
 
-task DebugBuild -if ($Configuration -eq "debug") {
+task DebugBuild -IF($Configuration -eq "debug") {
     $Script:ModuleName = (Test-ModuleManifest -Path ".\Source\*.psd1").Name
     Write-Verbose $ModuleName
     if(Test-Path ".\Output\temp\$($ModuleName)") {
@@ -73,26 +73,26 @@ task DebugBuild -if ($Configuration -eq "debug") {
     }
 
     Write-Verbose -Message "Creating new temp module version folder: .\Output\temp\$($ModuleName)\$($ModuleVersion)."
-    try {
+    TRY{
         New-Item -Path ".\Output\temp\$($ModuleName)\$($ModuleVersion)" -ItemType Directory
     }
-    catch {
+    CATCH{
         throw "Failed creating the new temp module folder: .\Output\temp\$($ModuleName)\$($ModuleVersion)"
     }
 
     Write-Verbose -Message "Generating the Module Manifest for temp build and generating new Module File"
-    try {
+    TRY{
         Copy-Item -Path ".\Source\$($ModuleName).psd1" -Destination ".\Output\temp\$($ModuleName)\$ModuleVersion\"
         New-Item -Path ".\Output\temp\$($ModuleName)\$ModuleVersion\$($ModuleName).psm1" -ItemType File
     }
-    catch {
+    CATCH{
         throw "Failed copying Module Manifest from: .\Source\$($ModuleName).psd1 to .\Output\temp\$($ModuleName)\$ModuleVersion\ or Generating the new psm file."
     }
 
     Write-Verbose -Message "Updating Module Manifest with Public Functions"
     $publicFunctions = Get-ChildItem -Path ".\Source\Public\*.ps1"
     $privateFunctions = Get-ChildItem -Path ".\Source\Private\*.ps1"
-    try {
+    TRY{
         Write-Verbose -Message "Appending Public functions to the psm file"
         $FunctionsToExport = New-Object -TypeName System.Collections.ArrayList
         foreach($Function in $publicFunctions.Name){
@@ -101,7 +101,7 @@ task DebugBuild -if ($Configuration -eq "debug") {
         }
         Update-ModuleManifest -Path ".\Output\temp\$($ModuleName)\$($ModuleVersion)\$($ModuleName).psd1" -FunctionsToExport $FunctionsToExport
     }
-    catch {
+    CATCH{
         throw "Failed updating Module manifest with public functions"
     }
     $ModuleFile = ".\Output\temp\$($ModuleName)\$($ModuleVersion)\$($ModuleName).psm1"
@@ -109,7 +109,7 @@ task DebugBuild -if ($Configuration -eq "debug") {
     Write-Verbose -Message "Appending Public Functions"
     Add-Content -Path $ModuleFile -Value "### --- PUBLIC FUNCTIONS --- ###"
     foreach($Function in $publicFunctions.Name){
-        try {
+        TRY{
             Write-Verbose -Message "Updating the .psm1 file with function: $($Function)"
             $content = Get-Content -Path ".\Source\Public\$($Function)"
             Add-Content -Path $ModuleFile -Value "#Region - $Function"
@@ -136,7 +136,7 @@ task DebugBuild -if ($Configuration -eq "debug") {
             }
             Add-Content -Path $ModuleFile -Value "#EndRegion - $Function"
         }
-        catch {
+        CATCH{
             throw "Failed adding content to .psm1 for function: $($Function)"
         }
     }
@@ -144,14 +144,14 @@ task DebugBuild -if ($Configuration -eq "debug") {
     Write-Verbose -Message "Appending Private functions"
     Add-Content -Path $ModuleFile -Value "### --- PRIVATE FUNCTIONS --- ###"
     foreach($Function in $privateFunctions.Name){
-        try {
+        TRY{
             Write-Verbose -Message "Updating the .psm1 file with function: $($Function)"
             $content = Get-Content -Path ".\Source\Private\$($Function)"
             Add-Content -Path $ModuleFile -Value "#Region - $Function"
             Add-Content -Path $ModuleFile -Value $content
             Add-Content -Path $ModuleFile -Value "#EndRegion - $Function"
         }
-        catch {
+        CATCH{
             throw "Failed adding content to .psm1 for function: $($Function)"
         }
     }
@@ -192,25 +192,25 @@ task Build -if($Configuration -eq "Release"){
         Write-Verbose -Message "Detected old folder, removing it from output folder"
         Remove-Item -Path ".\Output\$($ModuleName)" -Recurse -Force
     }
-    try {
+    TRY{
 
         New-Item -Path ".\Output\$($ModuleName)\$($ModuleVersion)" -ItemType Directory
     }
-    catch {
+    CATCH{
         throw "Failed creating the new temp module folder: .\Output\$($ModuleName)\$($ModuleVersion)"
     }
 
     Write-Verbose -Message "Generating the Module Manifest for temp build and generating new Module File"
-    try {
+    TRY{
         Copy-Item -Path ".\Source\$($ModuleName).psd1" -Destination ".\Output\$($ModuleName)\$ModuleVersion\"
         New-Item -Path ".\Output\$($ModuleName)\$ModuleVersion\$($ModuleName).psm1" -ItemType File
     }
-    catch {
+    CATCH{
         throw "Failed copying Module Manifest from: .\Source\$($ModuleName).psd1 to .\Output\$($ModuleName)\$ModuleVersion\ or Generating the new psm file."
     }
 
     Write-Verbose -Message "Updating Module Manifest with Public Functions"
-    try {
+    TRY{
         Write-Verbose -Message "Appending Public functions to the psm file"
         $FunctionsToExport = New-Object -TypeName System.Collections.ArrayList
         foreach($Function in $publicFunctions.Name){
@@ -219,7 +219,7 @@ task Build -if($Configuration -eq "Release"){
         }
         Update-ModuleManifest -Path ".\Output\$($ModuleName)\$($ModuleVersion)\$($ModuleName).psd1" -FunctionsToExport $FunctionsToExport
     }
-    catch {
+    CATCH{
         throw "Failed updating Module manifest with public functions"
     }
     $ModuleFile = ".\Output\$($ModuleName)\$($ModuleVersion)\$($ModuleName).psm1"
@@ -227,7 +227,7 @@ task Build -if($Configuration -eq "Release"){
     Write-Verbose -Message "Appending Public Functions"
     Add-Content -Path $ModuleFile -Value "### --- PUBLIC FUNCTIONS --- ###"
     foreach($Function in $publicFunctions.Name){
-        try {
+        TRY{
             Write-Verbose -Message "Updating the .psm1 file with function: $($Function)"
             $content = Get-Content -Path ".\Source\Public\$($Function)"
             Add-Content -Path $ModuleFile -Value "#Region - $Function"
@@ -254,7 +254,7 @@ task Build -if($Configuration -eq "Release"){
             }
             Add-Content -Path $ModuleFile -Value "#EndRegion - $Function"
         }
-        catch {
+        CATCH{
             throw "Failed adding content to .psm1 for function: $($Function)"
         }
     }
@@ -262,34 +262,34 @@ task Build -if($Configuration -eq "Release"){
     Write-Verbose -Message "Appending Private functions"
     Add-Content -Path $ModuleFile -Value "### --- PRIVATE FUNCTIONS --- ###"
     foreach($Function in $privateFunctions.Name){
-        try {
+        TRY{
             Write-Verbose -Message "Updating the .psm1 file with function: $($Function)"
             $content = Get-Content -Path ".\Source\Private\$($Function)"
             Add-Content -Path $ModuleFile -Value "#Region - $Function"
             Add-Content -Path $ModuleFile -Value $content
             Add-Content -Path $ModuleFile -Value "#EndRegion - $Function"
         }
-        catch {
+        CATCH{
             throw "Failed adding content to .psm1 for function: $($Function)"
         }
     }
 
     Write-Verbose -Message "Updating Module Manifest with root module"
-    try {
+    TRY{
         Write-Verbose -Message "Updating the Module Manifest"
         Update-ModuleManifest -Path ".\Output\$($ModuleName)\$($ModuleVersion)\$($ModuleName).psd1" -RootModule "$($ModuleName).psm1"
     }
-    catch {
+    CATCH{
         Write-Warning -Message "Failed appinding the rootmodule to the Module Manifest"
     }
 
     Write-Verbose -Message "Compiling Help files"
     Write-Verbose -Message "Importing the module to be able to output documentation"
-    Try {
+    TRY{
         Write-Verbose -Message "Importing the module to be able to output documentation"
         Import-Module ".\Output\$($ModuleName)\$ModuleVersion\$($ModuleName).psm1"
     }
-    catch {
+    CATCH{
         throw "Failed importing the module: $($ModuleName)"
     }
 
@@ -332,11 +332,11 @@ task Publish -if($Configuration -eq "Release"){
     Write-Verbose -Message "Importing Module .\Output\$($ModuleName)\$ModuleVersion\$($ModuleName).psm1"
     Import-Module ".\Output\$($ModuleName)\$ModuleVersion\$($ModuleName).psm1"
     If((Get-Module -Name $ModuleName) -and ($NugetAPIKey)) {
-        try {
+        TRY{
             write-Verbose -Message "Publishing Module: $($ModuleName)"
             Publish-Module -Name $ModuleName -NuGetApiKey $NugetAPIKey
         }
-        catch {
+        CATCH{
             throw "Failed publishing module to PowerShell Gallery"
         }
     }

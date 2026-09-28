@@ -29,20 +29,20 @@ Function Get-RandomHexNumber {
 		Author:			Lars Panzerbjrn
 		Creation Date:	2019.08.10
 		Purpose/Change: Initial script development
-		
+
 #>
-    param( 
+    param(
         [int] $length = 20,
         [string] $chars = "0123456789ABCDEF"
     )
-		#IF ("Length" -eq $PSCmdlet.ParameterSetName)
+		#IF("Length" -eq $PSCmdlet.ParameterSetName)
 		#{
 			$bytes = new-object "System.Byte[]" $length
 			$rnd = new-object System.Security.Cryptography.RNGCryptoServiceProvider
 			$rnd.GetBytes($bytes)
 			$result = ""
 			1..$length | foreach-object{
-				$result += $chars[ $bytes[$_] % $chars.Length ]	
+				$result += $chars[ $bytes[$_] % $chars.Length ]
 			}
 				$result
 		#}

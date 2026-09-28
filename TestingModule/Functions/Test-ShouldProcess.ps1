@@ -27,19 +27,19 @@ Function Test-ShouldProcess {
 	[CmdletBinding(SupportsShouldProcess,ConfirmImpact='Medium')]
 	param()
 
-	Begin{
+	BEGIN{
 		Write-Verbose "Beginning $($MyInvocation.Mycommand)"
-		if (-not $PSBoundParameters.ContainsKey('Confirm')){
+		IF(-not $PSBoundParameters.ContainsKey('Confirm')){
 			$ConfirmPreference = $PSCmdlet.SessionState.PSVariable.GetValue('ConfirmPreference')
 		}
-		if (-not $PSBoundParameters.ContainsKey('WhatIf')){
+		IF(-not $PSBoundParameters.ContainsKey('WhatIf')){
 			$WhatIfPreference = $PSCmdlet.SessionState.PSVariable.GetValue('WhatIfPreference')
 		}
 	}
 
-	Process{
+	PROCESS{
 		# Preparation
-		if ($PSCmdlet.ShouldProcess("ShouldProcess?")){
+		IF($PSCmdlet.ShouldProcess("ShouldProcess?")){
 			# Critical code
 		}
 		# Cleanup

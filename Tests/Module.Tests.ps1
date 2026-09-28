@@ -7,10 +7,10 @@ $Helpers		= Join-Path -Path $ProjectRoot -ChildPath $ModuleName -AdditionalChild
 
 BeforeAll {
 	#Write-Host 'BeforeAll'
-	Try{
+	TRY{
 		Import-module PSScriptAnalyzer -ErrorAction STOP
 	}
-	Catch{
+	CATCH{
 		Install-Module -Name PSScriptAnalyzer
 	}
 	IF(!(Get-Module PSScriptAnalyzer)){

@@ -9,6 +9,6 @@ Function Test-PSBoundParametersPriv {
 
 #You can also check for the existence of a specific key with $PSBoundParameters.ContainsKey('Text') or $PSBoundParameters['Text']
 
-# If ($PSBoundParameters.ContainsKey('Text')) {
+# IF($PSBoundParameters.ContainsKey('Text')) {
 #    Write-Output -InputObject "Text has been included as: '$Text'"
 # }

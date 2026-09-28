@@ -1,4 +1,4 @@
-Function Test-BeginProcessEnd{
+Function Test-BeginProcessEND{
 	<#
 		.SYNOPSIS
 			Describe the function here

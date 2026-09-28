@@ -20,12 +20,12 @@ Function Test-WhatIf {
 
 	.EXAMPLE
 		Test-WhatIf -FilePath C:\Temp\TestWhatIf.txt
-		
+
 		This will create a new file if the impact is confirmed.
 
 	.EXAMPLE
 		Test-WhatIf -FilePath C:\Temp\TestWhatIf.txt -WhatIf
-		
+
 		This will show the What If output.
 
 	.LINK
@@ -37,7 +37,7 @@ Function Test-WhatIf {
 		[ValidateNotNullOrEmpty()]
 		[string]$FilePath
 	)
-	
+
 	BEGIN{
 		Write-Verbose "#################################################################"
 		Write-Verbose "Beginning $($MyInvocation.MyCommand.Name) on $($ENV:ComputerName) @ $(Get-Date -Format "yyyy.MM.dd HH:mm:ss")"
@@ -46,7 +46,7 @@ Function Test-WhatIf {
 		Write-Verbose "Checking to see if the file provided already exists"
 		$FileExists = Test-Path -Path $FilePath
 	}
-		
+
 	PROCESS{
 		TRY{
 			IF($FileExists){

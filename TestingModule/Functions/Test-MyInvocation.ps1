@@ -15,10 +15,10 @@ Function Test-MyInvocation {
 	Param (
 		[Parameter()][switch]$OneDrive
 	)
-	Begin{
+	BEGIN{
 		Write-Verbose "Beginning $($MyInvocation.Mycommand)" -Verbose
 	}
-	Process{
+	PROCESS{
 		#Write-Verbose "Processing $($MyInvocation.BoundParameter)"
 		Write-Host "Processing $($MyInvocation.Mycommand.Name)"
 		Write-Host "Processing $($MyInvocation.ScriptName)"
